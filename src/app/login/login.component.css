@@ -1,0 +1,27 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+#btns:hover{
+    background-color:rgb(228, 226, 226) ;
+}
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: auto;
+    
+}
+
+#font{
+    font-size: 100px;
+    margin-bottom: 200px;
+    transition: 0.9s ease-in-out;
+}
+
+#font:hover{
+    cursor: pointer;
+    font-size: 150px;
+    transition: 0.9s ease-in-out;
+}

@@ -1,0 +1,143 @@
+<div class="con" [ngClass]="{'max-height': true}">
+
+    <mat-toolbar>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>LogoMaker</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-grid-list cols="2" style="height: 100px;">
+
+
+      <mat-grid-tile class="segment">
+        <div *ngIf="customerChoiceAccess===true,then customerChoice, else createLogoForm">
+
+        </div>       
+      </mat-grid-tile>
+
+
+
+      <mat-grid-tile class="segment2">
+
+        <div *ngIf="customerChoiceAccess===false,then customerChoice,else previewLogo">        
+        </div>
+
+      </mat-grid-tile>
+    </mat-grid-list>
+  
+  </div>
+
+  <ng-template #customerChoice>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Your Choices</mat-card-title>
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <mat-card-content>
+        <mat-card *ngIf="projectName!=''">
+          <mat-card-title><h3>Your project name</h3></mat-card-title>
+          <mat-card-content>{{projectName}}</mat-card-content>
+        </mat-card>     
+        <mat-card *ngIf="description!=''">
+          <mat-card-title><h3>Your project description</h3></mat-card-title>
+          <mat-card-content>{{description}}</mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="conceptSelect!=''">
+          <mat-card-title><h3>Your logo requirement</h3></mat-card-title>
+          <mat-card-content>{{conceptSelect}}</mat-card-content>
+        </mat-card>        
+        <mat-card *ngIf="logoColor!=''">
+          <mat-card-title><h3>Your logoColor</h3></mat-card-title>
+          <mat-card-content>{{logoColor}}</mat-card-content>
+        </mat-card>   
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="submit()" *ngIf="logoInfoForm.valid && !customerChoiceAccess">SUBMIT</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-template>
+
+
+  <ng-template #previewLogo>
+    <mat-progress-spinner color="primary" disableRipple="true" mode="indeterminate" *ngIf="spinner"></mat-progress-spinner> 
+    <app-preview-logo [logoDescription]="logoDescriptions"></app-preview-logo>
+     
+  </ng-template>
+
+
+  <ng-template #createLogoForm>
+    <mat-stepper orientation="vertical" [linear]="false" #stepper>
+      <form [formGroup]="logoInfoForm">              
+      <mat-step [stepControl]="logoInfoForm">
+        
+          <ng-template matStepLabel>Project Name</ng-template>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="projectName" formControlName="projectName" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext >Next</button>
+          </div>
+      </mat-step>
+      <mat-step [stepControl]="logoInfoForm">
+          <ng-template matStepLabel>Project description</ng-template>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput [(ngModel)]="description" formControlName="projectDescription"
+                   required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Logo requirement</ng-template>
+        <mat-form-field>
+          <mat-label>Concept</mat-label>
+          <input matInput [(ngModel)]="conceptSelect" formControlName="conceptSelection" placeholder="Fill the concept"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+
+      <mat-step>
+        <ng-template matStepLabel>Fill out the colors</ng-template>
+        <mat-form-field>
+          <mat-label>Concept</mat-label>
+          <input matInput [(ngModel)]="logoColor" formControlName="logoColors"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+
+      
+        </form>
+      
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>              </div>
+      </mat-step>
+    </mat-stepper>
+  </ng-template>
+  
+  
+    
+  

@@ -1,0 +1,49 @@
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+#btns:hover{
+    background-color:rgb(228, 226, 226) ;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('../../../assets/images/png-transparent-logo-sand-bucket-photography-paint-artwork.png');
+  background-position: -15px;
+  background-size: cover;
+}
+
+.segment{
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #ffffff, #b3e4eb) 1;
+}
+
+.segment2{
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to left, #ffffff, #f1cdcd) 1;
+}
+.con {
+    height: 100vh;
+  }
+
+  /* .example-input-wrapper {
+    margin-bottom: 16px;
+  }
+  
+  label {
+    margin-right: 4px;
+  } */
+
+  .mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
